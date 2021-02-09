@@ -121,8 +121,18 @@
 					<input type="hidden" value="<?php echo $cli_dirtrabajo;?>" id="cli_dirtrabajo<?php echo $cli_codigo;?>">
 					<input type="hidden" value="<?php echo $cli_referencia;?>" id="cli_referencia<?php echo $cli_codigo;?>">
 					<tr>
+					
+
 						<td><?php echo $cli_cedula; ?></td>
-						<td><?php echo $cli_nombres; ?></td>
+						
+
+						<td><a href="#" data-toggle="tooltip" data-placement="top" 
+					 title="<i class='glyphicon glyphicon-phone'></i><?php echo $cli_telefono;?><br>
+       						<i class='glyphicon glyphicon-envelope'></i><?php echo $cli_dirdomicilio;?><br>
+							<i class='glyphicon glyphicon-envelope'></i><?php echo $cli_dirtrabajo;?><br>
+							<i class='glyphicon glyphicon-envelope'></i><?php echo $cli_referencia;?>
+       						"><?php echo $cli_nombres;?></a></td>
+
 						<td><?php echo $cli_telefono;?></td>
 					<td ><span class="pull-right">
 
