@@ -45,7 +45,7 @@
         }
     }
 	if($action == 'ajax'){
-         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
+        $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
          $aColumns = array('cli_nombres','pre_fecha');
          $sTable = "vis_prestamos";
          $sWhere = "";
@@ -70,7 +70,7 @@
         $row= mysqli_fetch_array($count_query);
         $numrows = $row['numrows'];
         $total_pages = ceil($numrows/$per_page);
-        $reload = '../../../prestamos.php';
+        $reload = '../../../pagos.php';
         $sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
 		if ($numrows>0){
@@ -90,9 +90,9 @@
         </tr>
         <?php
 				while ($row=mysqli_fetch_array($query)){
-						$id_prestano=$row['pre_codigo'];
-						$pre_numero=$row['pre_numero'];
-						$pre_fecha=$row['pre_fecha'];
+                        $id_prestamo=$row['pre_codigo'];
+                        $pre_numero=$row['pre_numero'];
+                        $pre_fecha=$row['pre_fecha'];
                         $cli_cedula=$row['cli_cedula'];
                         $cli_nombres=$row['cli_nombres'];
                         $cli_telefono=$row['cli_telefono'];
@@ -104,7 +104,6 @@
                         $pre_interes=$row['pre_interes'];
                         $pre_montopagar=$row['pre_montopagar'];
                         $pre_montototal=$row['pre_montototal'];
-                       
 					?>
         <tr>
             <td>
@@ -127,7 +126,7 @@
             </td>
             <td class="text-right">
 
-                <a href="#" class='btn btn-default' title='Ver Cuotas' onclick="procesoVerCuotas('<?php echo $id_prestano;?>','<?php echo $pre_numero;?>','<?php echo $pre_fecha;?>','<?php echo $cli_nombres;?>','<?php echo $pre_monto;?>','<?php echo $pre_interes;?>','<?php echo $pre_montopagar;?>','<?php echo $pre_montototal;?>');return false;" data-toggle="modal" data-target="#myModalCuotas"><i class="glyphicon glyphicon-usd"></i></a>
+                <a href="registrar_pago.php?id_prestamo=<?php echo $id_prestamo;?>" class='btn btn-default' title='Registrar Pagos'><i class="glyphicon glyphicon-usd"></i> Cuotas</a>
                         
                 <!--<a href="editar_tarifario.php?id_tarifario=<?php echo $id_tarifario;?>" class='btn btn-default' title='Editar Tarifario'><i class="glyphicon glyphicon-edit"></i></a>
 
@@ -138,7 +137,7 @@
         </tr>
         <?php
 				}
-		?>
+				?>
         <tr>
             <td colspan=9><span class="pull-right">
                     <?php

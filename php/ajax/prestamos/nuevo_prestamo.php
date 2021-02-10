@@ -12,12 +12,11 @@ $montopagar = floatval($_POST['montopagar']);
 
 $valor_cuota=0;
 $valor_cuota=$montopagar/$nrocuotas;
-$fecha=date("Y-m-d");
 
 $sql = mysqli_query($con, "SELECT LAST_INSERT_ID(pre_numero) as last FROM prestamos order by pre_codigo desc limit 0,1 ");
 $rw = mysqli_fetch_array($sql);
 $numero_prestamo = $rw['last'] + 1;
-
+$fecha=date("Y-m-d");
 $insert=mysqli_query($con,"
 INSERT INTO prestamos (
 cli_codigo,

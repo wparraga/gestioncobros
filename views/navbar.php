@@ -41,6 +41,18 @@
 
         <li class="<?php echo $active_pagos;?>"><a href="pagos.php"><i class='glyphicon glyphicon-briefcase'></i> Pagos</a></li>
 
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class='glyphicon glyphicon-list-alt'></i>
+            Reportes
+          <b class="caret"></b>
+          </a>
+           <ul class="dropdown-menu">
+              <li class="<?php echo $active_pagosrealizados;?>"><a href="pagos_realizados.php"><i class='glyphicon glyphicon-list-alt'></i> Pagos Realizados</a></li>
+              <li class="divider"></li>
+              <li class="<?php echo $active_pagospendientes;?>"><a href="pagos_pendientes.php"><i class='glyphicon glyphicon-list-alt'></i> Pagos Pendientes</a></li>
+            </ul>  
+        </li>
+
 
         <li class="<?php echo $active_usuarios;?>"><a href="usuarios.php"><i  class='glyphicon glyphicon-lock'></i> Usuario</a></li>
 

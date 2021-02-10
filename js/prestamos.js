@@ -19,7 +19,7 @@ function load(page) {
 }
 
 
-function procesoVerCuotas(id_prestamo,numero,fecha,cliente,total,interes,montototal){
+function procesoVerCuotas(id_prestamo,numero,fecha,cliente,total,interes,montototal,montopagado){
     var resultado=""; 
     var parametros = {
         "id_prestamo" : id_prestamo,
@@ -29,6 +29,7 @@ function procesoVerCuotas(id_prestamo,numero,fecha,cliente,total,interes,montoto
         "total" : total,
         "interes" : interes,
         "montototal" : montototal,
+        "montopagado" : montopagado,
     };
     request = $.ajax({
     data:  parametros,

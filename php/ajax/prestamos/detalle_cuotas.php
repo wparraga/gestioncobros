@@ -12,12 +12,14 @@
             $total = $_POST['total'];
             $inte = $_POST['interes'];
             $montototal = $_POST['montototal'];
+            $montopagado = $_POST['montopagado'];
             echo '<label>Prestamo #:</label> '.$num.'</br>';
             echo '<label>Fecha:</label> '.$fec.'</br>';
             echo '<label>Cliente:</label> '.$cli.'</br>';
             echo '<label>Monto: $</label>'.$total.'</br>';
             echo '<label>Interes:</label> '.$inte.'%</br>';
-            echo '<label>Monto Total: $</label>'.$montototal;
+            echo '<label>Monto Total: $</label> '.$montototal.'</br>';
+            echo '<label>Monto Pagado: $</label>'.$montopagado;
         ?>
         <thead>
             <tr class="well">
