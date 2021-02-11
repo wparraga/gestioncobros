@@ -10,13 +10,13 @@
      $q1 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q1'], ENT_QUOTES)));
      $q2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q2'], ENT_QUOTES)));
 
-		$sTable = "vis_pagosrealizados";
+		$sTable = "vis_pagospendientes";
 		$sWhere = "";
 		if ( $_GET['q1'] != "" && $_GET['q2'] != "" )
 		{
-			$sWhere = "WHERE date(cuo_fechacobro) between '$q1' and '$q2'";
+			$sWhere = "WHERE date(cuo_fechapago) between '$q1' and '$q2'";
 		}
-		$sWhere.=" order by cuo_fechacobro asc";
+		$sWhere.=" order by cuo_fechapago asc";
 		include '../../../views/pagination.php';
 		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 		$per_page = 5;
@@ -26,7 +26,7 @@
 		$row= mysqli_fetch_array($count_query);
 		$numrows = $row['numrows'];
 		$total_pages = ceil($numrows/$per_page);
-		$reload = './pagos_realizados.php';
+		$reload = './pagos_pendientes.php';
 		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
 		$query = mysqli_query($con, $sql);
 		if ($numrows>0){
@@ -59,12 +59,12 @@
 				</tr>
 			  </table>
 			  <?php
-			  	$query1 = mysqli_query($con, "select sum(cuo_montocuota) from vis_pagosrealizados where date(cuo_fechacobro) BETWEEN '$q1' AND '$q2'");
+			  	$query1 = mysqli_query($con, "select sum(cuo_montocuota) from vis_pagospendientes where date(cuo_fechapago) BETWEEN '$q1' AND '$q2'");
 			  	while ($row=mysqli_fetch_array($query1)){
 			  		$tc=$row[0];}
 			  ?>
 				<div class="col-sm-2">
-				  <label>Total Recaudado: </label><input type="text" class="form-control" value="<?php echo '$'.$tc;?>" name="tc" maxlength="0" >
+				  <label>Total x Recaudar: </label><input type="text" class="form-control" value="<?php echo '$'.$tc;?>" name="tc" maxlength="0" >
 				</div>
 			</div>
 			<?php

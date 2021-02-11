@@ -49,15 +49,7 @@
                      <select class="form-control" id="user_king2" name="user_king2" required>
                         <option value=""selected>-- Seleccione perfil --</option>
                         <option value="Administrador">Administrador</option>
-                        <option value="Administrativo">Administrativo</option>
-                        <option value="ANT">ANT</option>
-                        <option value="Avaluos y Catastro">Avaluos y Catastro</option>
-                        <option value="Obras Públicas">Obras Públicas</option>
-                        <option value="Planificación">Planificación</option>
-                        <option value="Recaudación">Recaudación</option>
-                        <option value="Registro de la Propiedad">Registro de la Propiedad</option>
-                        <option value="Rentas">Rentas</option>
-                        <option value="Secretaría">Secretaría</option>
+                        <option value="Cobrador">Cobrador</option>
                       </select>
                     </div>
                   </div>
