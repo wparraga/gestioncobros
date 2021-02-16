@@ -20,8 +20,6 @@
             if (!isNaN(montototal)) {
                 document.getElementById('montopagar').value = montototal;}
 	}
-	
-
 </script>
 <html lang="es">
   <head>
@@ -91,15 +89,15 @@
 							</div>
 							<label for="monto" class="col-md-1 control-label">Monto:</label>
 							<div class="col-md-1">
-								<input type="text" class="form-control input-sm" id="monto" name="monto" placeholder="Ingrese Monto"  maxlength="8" required="" onkeypress="return soloDecimales(event,this);" onkeyup="calcularmonto(monto,interes);"/>
+								<input type="text" class="form-control input-sm" id="monto" name="monto" placeholder="Ingrese Monto"  maxlength="8" required="" onkeypress="return soloDecimales(event,this);" onkeyup="calcularmonto(monto,interes);" autocomplete="off" />
 							</div>
 							<label for="nrocuotas" class="col-md-1 control-label">Nro_Cuotas:</label>
 							<div class="col-md-1">
-								<input type="text" class="form-control input-sm" id="nrocuotas" name="nrocuotas" placeholder="Ingrese Nro. Cuotas"  maxlength="2" required="" onkeypress="return soloNumeros(event,this);"/>
+								<input type="text" class="form-control input-sm" id="nrocuotas" name="nrocuotas" placeholder="Ingrese Nro. Cuotas"  maxlength="2" required="" onkeypress="return soloNumeros(event,this);" autocomplete="off"/>
 							</div>
 							<label for="interes" class="col-md-1 control-label">Interés%:</label>
 							<div class="col-md-1">
-								<input type="text" class="form-control input-sm" id="interes" name="interes" placeholder="Ingrese Interés"  maxlength="5" required="" onkeypress="return soloDecimales(event,this);" onkeyup="calcularmonto(monto,interes);"/>
+								<input type="text" class="form-control input-sm" id="interes" name="interes" placeholder="Ingrese Interés"  maxlength="5" required="" onkeypress="return soloDecimales(event,this);" onkeyup="calcularmonto(monto,interes);" autocomplete="off"/>
 							</div>
 							<label for="montopagar" class="col-md-1 control-label">Monto_Pagar:</label>
 							<div class="col-md-1">
@@ -107,7 +105,7 @@
 							</div>
 							<br>
 							<div class="pull-right">
-								<a  href="nueva_ventaItems.php?del=<?php echo $id_vendedor;?>" class="btn btn-default"><span class="glyphicon glyphicon-remove" ></span> Cancelar</a>
+								<a  href="nuevo_prestamo.php" class="btn btn-default"><span class="glyphicon glyphicon-remove" ></span> Cancelar</a>
 								 <button type="submit" class="btn btn-default">
 								  <span class="glyphicon glyphicon-saved"></span> Guardar</button>
 							</div>	

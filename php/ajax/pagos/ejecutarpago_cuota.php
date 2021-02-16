@@ -1,7 +1,6 @@
 <?php
 	include('../is_logged.php');
 	$id_prestamo= $_SESSION['id_prestamo'];
-	
 	require_once ("../../../config/db.php");
     require_once ("../../../config/conexion.php");
     include ("../../../config/swee.php");
@@ -12,18 +11,31 @@
 	while ($row=mysqli_fetch_array($query)){
 		$montocuota=$row['cuo_montocuota'];
 	}
+	if (empty($_POST['mod_abonocuota'])) {
+        $errors[] = "Abono de Cuota vacío";	
+    } else if ($_POST['mod_abonocuota']>$montocuota){
+			$errors[] = "El abono no puede ser mayor que la cuota";	
+	} else if (
+		!empty($_POST['mod_abonocuota'])
+	){
+	$abonocuota=doubleval($_POST['mod_abonocuota']);
+	//$saldocuota=doubleval($_POST['mod_saldocuota']);
     $date=date("Y-m-d H:i:s");
     $usuario= $_SESSION['user_name'];
-    $sql1="UPDATE prestamos set pre_montototal=pre_montototal-'".$montocuota."' WHERE pre_codigo='".$id_prestamo."'";
-		
-	$sql2="UPDATE cuotas SET 
-		cuo_fechacobro='".$date."',  
-		cuo_estado='PAGADO',
-		cuo_cobrador='".$usuario."'
+    if($abonocuota==$montocuota){
+    	$sql1="UPDATE prestamos set pre_montototal=pre_montototal-'".$abonocuota."' WHERE pre_codigo='".$id_prestamo."'";
+		$sql2="UPDATE cuotas SET cuo_fechacobro='".$date."',cuo_abonocuota=cuo_abonocuota+'".$abonocuota."',cuo_montocuota=cuo_montocuota-'".$abonocuota."',cuo_estado='PAGADO',cuo_cobrador='".$usuario."' 
 		WHERE cuo_codigo='".$id_cuota."'";
+    }else{
+    	$sql1="UPDATE prestamos set pre_montototal=pre_montototal-'".$abonocuota."' WHERE pre_codigo='".$id_prestamo."'";
+		$sql2="UPDATE cuotas SET cuo_fechacobro='".$date."',cuo_abonocuota='".$abonocuota."',cuo_montocuota=cuo_montocuota-'".$abonocuota."',cuo_estado='PENDIENTE',cuo_cobrador='".$usuario."' 
+		WHERE cuo_codigo='".$id_cuota."'";
+
+    }
+
 		$query_update1 = mysqli_query($con,$sql1);
 		$query_update2 = mysqli_query($con,$sql2);
-			if ($query_update1 && $query_update2){
+		if ($query_update1 && $query_update2){
 				echo'<script>
 						swal({
 							type: "success",
@@ -42,6 +54,9 @@
 			} else{
 				$errors []= "algo ha salido mal intenta nuevamente.".mysqli_error($con);
 			}
+		}else{
+			$errors []= "Error desconocido.";
+		}
 		
 
 		if (isset($errors)){

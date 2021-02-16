@@ -10,7 +10,6 @@
 <tr>
     <th>#Cuota</th>
     <th>FechaPago</th>
-    <th>Recaudación</th>
     <th>Cuota</th>
     <th>Estado</th>
 	<th></th>
@@ -25,6 +24,7 @@
         $cuo_fechapago=$row['cuo_fechapago'];
         $cuo_fechacobro=$row['cuo_fechacobro'];
         $cuo_montocuota=$row['cuo_montocuota'];
+        $cuo_abonocuota=$row['cuo_abonocuota'];
         $cuo_estado=$row['cuo_estado'];
         if ($cuo_estado=='PAGADO'){
             $estilo='display:none';
@@ -35,8 +35,7 @@
         }else{$label_class='';}
         if ($cuo_fechapago<$fechaActual){
             $label_class='label-danger';
-        }
-                           
+        }                       
 ?>
 <input type="hidden" value="<?php echo $cuo_fechapago;?>" id="cuo_fechapago<?php echo $cuo_codigo;?>"/>
 <input type="hidden" value="<?php echo $cuo_numero;?>" id="cuo_numero<?php echo $cuo_codigo;?>"/>
@@ -45,7 +44,6 @@
 <tr class="<?php echo $label_class;?>" style="<?php echo $estilo;?>">
     <td><?php echo $cuo_numero; ?></td>
     <td><?php echo $cuo_fechapago; ?></td>
-    <td><?php echo $cuo_fechacobro; ?></td>
     <td>$<?php echo $cuo_montocuota; ?></td>
     <td><?php echo $cuo_estado; ?></td>
     <td class='text-center'><button id="botonpagar" type='button' class="btn btn-primary" title='Ejecutar Pago' onclick="obtenerdatoscuota('<?php echo $cuo_codigo;?>');"data-toggle="modal" data-target="#myModal3"><span class="glyphicon glyphicon-plus" ></span> Pagar</button> </td>

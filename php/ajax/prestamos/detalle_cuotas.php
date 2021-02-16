@@ -41,7 +41,7 @@
                 <td><?php echo $fila[2]; ?></td>
                 <td><?php echo $fila[3]; ?></td>
                 <td>$<?php echo $fila[5]; ?></td>
-                <td><?php echo $fila[6]; ?></td>
+                <td><?php echo $fila[7]; ?></td>
             </tr>
         </tbody>
 

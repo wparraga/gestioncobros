@@ -1,7 +1,16 @@
 <?php
-		if (isset($con))
-		{
-	?>
+	if (isset($con)){
+?>
+<script type="text/javascript">
+        function calcularcuota(abono,cuota){
+        var txtabono = abono.value;
+        var txtcuota = cuota.value;
+        var txtsaldo = parseFloat(txtcuota)-parseFloat(txtabono);
+            txtsaldo=txtsaldo.toFixed(2);
+            if (!isNaN(txtsaldo)) {
+                document.getElementById('mod_saldocuota').value = txtsaldo;}
+    }
+</script>
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -31,6 +40,18 @@
                         <label for="mod_montocuota" class="col-sm-3 control-label">Valor Cuota:</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="mod_montocuota" name="mod_montocuota" disabled="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mod_abonocuota" class="col-sm-3 control-label">Abono Cuota:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="mod_abonocuota" name="mod_abonocuota" placeholder="Ingrese Abono Cuota"  maxlength="8" required="" onkeypress="return soloDecimales(event,this);" onkeyup="calcularcuota(mod_abonocuota,mod_montocuota)" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mod_saldocuota" class="col-sm-3 control-label">Saldo Cuota:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="mod_saldocuota" name="mod_saldocuota" placeholder="Saldo Cuota" disabled="true" />
                         </div>
                     </div>
                     <div class="form-group">
