@@ -41,13 +41,13 @@
 				</tr>
 				<?php
 					while ($row=mysqli_fetch_array($query)){
-						$cuo_fechacobro=$row['cuo_fechacobro'];
+						$cuo_fechapago=$row['cuo_fechapago'];
 						$cli_nombres=$row['cli_nombres'];
 						$cuo_montocuota=$row['cuo_montocuota'];
 						$cuo_cobrador=$row['cuo_cobrador'];
 				?>
 					<tr>
-						<td><?php echo $cuo_fechacobro; ?></td>
+						<td><?php echo $cuo_fechapago; ?></td>
 						<td><?php echo $cli_nombres; ?></td>
 						<td>$ <?php echo $cuo_montocuota; ?></td>
 						<td><?php echo $cuo_cobrador; ?></td>

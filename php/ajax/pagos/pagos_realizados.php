@@ -10,13 +10,13 @@
      $q1 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q1'], ENT_QUOTES)));
      $q2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q2'], ENT_QUOTES)));
 
-		$sTable = "vis_pagosrealizados";
+		$sTable = "vis_abonosrealizados";
 		$sWhere = "";
 		if ( $_GET['q1'] != "" && $_GET['q2'] != "" )
 		{
-			$sWhere = "WHERE date(cuo_fechacobro) between '$q1' and '$q2'";
+			$sWhere = "WHERE date(abo_fecha) between '$q1' and '$q2'";
 		}
-		$sWhere.=" order by cuo_fechacobro asc";
+		$sWhere.=" order by abo_fecha asc";
 		include '../../../views/pagination.php';
 		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 		$per_page = 5;
@@ -35,21 +35,24 @@
 			  <table class="table">
 				<tr  class="success">
 					<th>Fecha</th>
+					<th>#Cuota</th>
 					<th>Cliente</th>
-					<th>Cuota</th>
+					<th>Abono</th>
 					<th>Cobrador</th>
 				</tr>
 				<?php
 					while ($row=mysqli_fetch_array($query)){
-						$cuo_fechacobro=$row['cuo_fechacobro'];
+						$abo_fecha=$row['abo_fecha'];
+						$cuo_numero=$row['cuo_numero'];
 						$cli_nombres=$row['cli_nombres'];
-						$cuo_montocuota=$row['cuo_montocuota'];
+						$abo_valor=$row['abo_valor'];
 						$cuo_cobrador=$row['cuo_cobrador'];
 				?>
 					<tr>
-						<td><?php echo $cuo_fechacobro; ?></td>
+						<td><?php echo $abo_fecha; ?></td>
+						<td><?php echo $cuo_numero; ?></td>
 						<td><?php echo $cli_nombres; ?></td>
-						<td>$ <?php echo $cuo_montocuota; ?></td>
+						<td>$ <?php echo $abo_valor; ?></td>
 						<td><?php echo $cuo_cobrador; ?></td>
 				<?php
 				}
@@ -59,7 +62,7 @@
 				</tr>
 			  </table>
 			  <?php
-			  	$query1 = mysqli_query($con, "select sum(cuo_montocuota) from vis_pagosrealizados where date(cuo_fechacobro) BETWEEN '$q1' AND '$q2'");
+			  	$query1 = mysqli_query($con, "select sum(abo_valor) from vis_abonosrealizados where date(abo_fecha) BETWEEN '$q1' AND '$q2'");
 			  	while ($row=mysqli_fetch_array($query1)){
 			  		$tc=$row[0];}
 			  ?>

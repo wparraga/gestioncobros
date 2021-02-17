@@ -8,13 +8,12 @@ $login = new Login();
 if ($login->isUserLoggedIn() == true) {
    header("location: home.php");
 } else {
-    ?>
-<!DOCTYPE html>
+?>
 <html lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-    <title>Gestiones | GAD Flavio Alfaro</title>
+    <title>Gestión de Cobros</title>
     <link rel="stylesheet" href="views/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="views/css/login.css">
     <link rel=icon href='views/img/logo-icon.png' sizes="32x32" type="image/png">

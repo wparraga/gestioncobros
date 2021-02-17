@@ -26,16 +26,18 @@
     	$sql1="UPDATE prestamos set pre_montototal=pre_montototal-'".$abonocuota."' WHERE pre_codigo='".$id_prestamo."'";
 		$sql2="UPDATE cuotas SET cuo_fechacobro='".$date."',cuo_abonocuota=cuo_abonocuota+'".$abonocuota."',cuo_montocuota=cuo_montocuota-'".$abonocuota."',cuo_estado='PAGADO',cuo_cobrador='".$usuario."' 
 		WHERE cuo_codigo='".$id_cuota."'";
+		$sql3="INSERT INTO abonos(cuo_codigo,abo_fecha,abo_valor)VALUES('".$id_cuota."','".$date."','".$abonocuota."')";
     }else{
     	$sql1="UPDATE prestamos set pre_montototal=pre_montototal-'".$abonocuota."' WHERE pre_codigo='".$id_prestamo."'";
 		$sql2="UPDATE cuotas SET cuo_fechacobro='".$date."',cuo_abonocuota='".$abonocuota."',cuo_montocuota=cuo_montocuota-'".$abonocuota."',cuo_estado='PENDIENTE',cuo_cobrador='".$usuario."' 
 		WHERE cuo_codigo='".$id_cuota."'";
+		$sql3="INSERT INTO abonos(cuo_codigo,abo_fecha,abo_valor)VALUES('".$id_cuota."','".$date."','".$abonocuota."')";
 
     }
-
 		$query_update1 = mysqli_query($con,$sql1);
 		$query_update2 = mysqli_query($con,$sql2);
-		if ($query_update1 && $query_update2){
+		$query_update3 = mysqli_query($con,$sql3);
+		if ($query_update1 && $query_update2 && $query_update3){
 				echo'<script>
 						swal({
 							type: "success",

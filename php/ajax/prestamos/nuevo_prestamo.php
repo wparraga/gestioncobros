@@ -43,26 +43,24 @@ while($r=mysqli_fetch_row($query)){
 $nums = 1;
 while ($nums<=$nrocuotas) {
     $sql = mysqli_query($con, "SELECT LAST_INSERT_ID(cuo_numero) as last FROM cuotas where pre_codigo='$id_prestamo' order by cuo_codigo desc limit 0,1 ");
-        $rw = mysqli_fetch_array($sql);
-        $numero_cuota = $rw['last'] + 1;
-
-        $fecha_actual = date("Y-m-d");
+    $rw = mysqli_fetch_array($sql);
+    $numero_cuota = $rw['last'] + 1;
+    $fecha_actual = date("Y-m-d");
         //sumo 1 día
-        $fecha_pago=date("Y-m-d",strtotime($fecha_actual."+ ".$nums." days")); 
-
-
-  
+    $fecha_pago=date("Y-m-d",strtotime($fecha_actual."+ ".$nums." days"));
     $insert=mysqli_query($con,"INSERT INTO cuotas
         (pre_codigo,
          cuo_numero,
          cuo_fechapago,
          cuo_montocuota,
+         cuo_abonocuota,
          cuo_estado,
          cuo_formapago) VALUES 
         ('$id_prestamo',
          '$numero_cuota',
          '$fecha_pago',
          '$valor_cuota',
+         '0.00',
          'PENDIENTE',
          'DIARIA')");
     $nums++;
